@@ -1,48 +1,106 @@
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+import dash_table_experiments as dt
 
+from dash.dependencies import Input, Output,State
 from app import app
-from Dash.apps import bayes_predict, ES_1
+from Dash.apps import bayes_predict, ES_1,datatable_example,graph_test,k_arm_bandit
 
+'''
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-primary" href="#">Machine Learning</a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">Sign out</a>
+                </li>
+            </ul>
+        </nav>
+
+'''
 
 app.layout = html.Div([
-
-    html.Div([
 
         html.Div([
 
             html.Div([
-                html.Button(id="bayes-page", children="Bayes", className="btn btn-secondary"),
-                html.Button(id="evolution-page", children="Evolution", className="btn btn-secondary"),
 
-            ], className="btn-group-vertical"),
+                html.Div([
 
-        ],className="col-sm-2"),
+                    html.A(
+                        html.Button('K-Arm Bandit', type="button", className="btn btn-primary")
+                        , href="/k_arm"),
 
-        html.Div([
+                    html.A(
+                        html.Button('Bayes Predict', type="button", className="btn btn-primary")
+                        , href="/bayes_predict"),
 
-            dcc.Location(id='url', refresh=False),
-            html.Div(id='page-content')
+                    html.A(
+                        html.Button('ES Strategies',type="button", className="btn btn-primary")
+                    ,href="/ES_1"),
 
-        ], className="col-sm-10"),
+                    html.A(
+                        html.Button('DataTable',type="button", className="btn btn-primary")
+                    ,href="/dash_table"),
+
+                    html.A(
+                        html.Button('TestGraph',type="button", className="btn btn-primary")
+                    ,href="/test_graph"),
 
 
-    ],className="row"),
+                ], className="btn-group-vertical"),
 
-],style = {"margin-top":"50px"}, className="container")
+            ],className="col-sm-2"),
+
+            html.Div([
+
+                dcc.Location(id='url', refresh=False),
+                html.Div(id='page-content')
+
+            ], className="col-sm-10"),
+
+
+        ],className="row"),
+
+        html.Div(dt.DataTable(rows=[{}]), style={'display': 'none'})
+
+    ],style = {"margin-top":"50px","margin-left":"0px","margin-right":"0px"}, className="container")
+
+
+
+
+
 
 @app.callback(Output('page-content', 'children'),
-              [Input('bayes-page', 'pathname'),
-               Input('evolution-page', 'value')])
-def display_page(pathname,value):
+              [Input('url', 'pathname')])
+def display_page(pathname):
 
-    if pathname == '/apps/app1':
+    if pathname == '/ES_1':
+
          return ES_1.layout
-    elif pathname == '/apps/app2':
+
+    elif pathname == '/bayes_predict':
+
          return bayes_predict.layout
+
+    elif pathname == '/dash_table':
+
+        return datatable_example.layout
+
+    elif pathname == '/test_graph':
+
+        return graph_test.layout
+
+    elif pathname == '/k_arm':
+
+        return k_arm_bandit.layout
+
+
+    elif pathname == '/':
+
+        return bayes_predict.layout
+
     else:
-        return '404'
+        return "404"
 
 if __name__ == '__main__':
     app.run_server(debug=True)

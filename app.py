@@ -11,7 +11,10 @@ bootstrap_css = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstra
 
 dashboard_css = "https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css"
 
+
+
 app.css.append_css({
 
-    "external_url": bootstrap_css
+    "external_url": bootstrap_css,
+    'external_url_2': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
 })
