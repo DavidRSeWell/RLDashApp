@@ -8,11 +8,13 @@ import pandas as pd
 import sqlite3
 import plotly.figure_factory as ff
 import json
+import h5py
+import time
 
 from app import app
 from dash.dependencies import Input, Output, State,Event
 from scipy.stats import norm,bernoulli,beta,binom
-from tasks.test_tasks import test_graph
+from tasks.rl_basic_tasks import k_arm_bandit
 
 
 layout_posterior = go.Layout(
@@ -36,7 +38,7 @@ layout = html.Div([
 
                     html.Label('Lever number'),
                     dcc.Slider(
-                        id='level-number',
+                        id='lever-number',
                         min=1,
                         max=10,
                         marks={i: str(i) for i in range(1, 11)},
@@ -49,6 +51,7 @@ layout = html.Div([
 
                     html.Label('Epsilon'),
                     dcc.Slider(
+                        id='epsilon-value',
                         min=0,
                         max=1,
                         step=0.1,
@@ -57,10 +60,12 @@ layout = html.Div([
 
                 ],className="form-group"),
 
-            ]),
+
+            ],id='model-parameter-form'),
 
             html.Button(id='submit-button', n_clicks=0, type="button",children='Sample', className="btn btn-primary"),
-            html.Button(id='run-model', n_clicks=0, type="button", children='Run', className="btn btn-primary")
+            html.Button(id='run-model', n_clicks=0, type="button", children='Run', className="btn btn-primary"),
+            html.Button(id='toggle-model', n_clicks=0, type="button", children='Toggle', className="btn btn-primary")
 
         ],className="col-sm-12"),
 
@@ -92,24 +97,22 @@ layout = html.Div([
 
     ],className="row",style={"margin-top":"10px"}),
 
-    dcc.Interval(
-        id='interval-component',
-        interval=2*1000, # in milliseconds
-        n_intervals=0
-    ),
+    html.Div(id='interval-container'),
 
     # Hidden div inside the app that stores the intermediate value
+    html.Div(id='model-state',children='stop'),
+
     html.Div(id='run-model-hidden', style={'display': 'none'})
 
 
-],style = {"margin-top":"50px"},className="container")
+],style = {"margin-top":"50px"},className="container",id='main-container')
 
 
 
 @app.callback(
     dash.dependencies.Output('reward-distribution','figure'),
     [dash.dependencies.Input('submit-button','n_clicks')],
-    [dash.dependencies.State('level-number','value')]
+    [dash.dependencies.State('lever-number','value')]
 )
 def update_current_sample(n_clicks,input1):
 
@@ -150,21 +153,35 @@ def update_current_sample(n_clicks,input1):
 
 @app.callback(
     dash.dependencies.Output('loss-graph','figure'),
-    [dash.dependencies.Input('interval-component','n_intervals')]
+    [dash.dependencies.Input('interval-component','n_intervals')],
+    [dash.dependencies.State('model-state','children'),
+     dash.dependencies.State('epsilon-value', 'value'),
+     dash.dependencies.State('lever-number', 'value')]
 )
-def display_loss(n_intervals):
+def display_loss(n_clicks,model_state,epsilon_value,lever_number):
 
-    q = 'select * from LossTable'
+    if model_state == 'stop':
 
-    conn = sqlite3.connect('/Users/befeltingu/RLResearch/Data/test_db')
+        return {'data':[]}
 
-    db_df = pd.read_sql(q, conn)
+    print("Inverval")
+
+    time.sleep(2)
+
+    path_name = 'kbandit_{num_levers}_{epsilon}.h5'.format(num_levers=lever_number, epsilon=epsilon_value)
+
+    hdf_file_path = '/Users/befeltingu/RLResearch/Data/' + path_name
+
+    f = h5py.File(hdf_file_path, 'r', libver='latest',
+                  swmr=True)
+
+    dset = f["avg_reward"][:] # fetch all the datas
 
     figure = {
         'data': [
             go.Scatter(
-                x=db_df['inc'],
-                y=db_df['loss_value'],
+                x=[x for x in range(len(dset))],
+                y=dset,
 
             )
         ],
@@ -175,21 +192,60 @@ def display_loss(n_intervals):
             legend={'x': 0, 'y': 1},
         )
     }
-    conn.close()
+
+    f.close()
 
     return figure
-
 
 
 @app.callback(
     dash.dependencies.Output('run-model-hidden','children'),
     [],
-    [dash.dependencies.State('reward-distribution','figure')],
+    [dash.dependencies.State('reward-distribution','figure'),
+     dash.dependencies.State('epsilon-value', 'value')],
     [Event('run-model', 'click')]
 )
-def run_model(figure):
+def run_model(reward_figure,epsilon_value):
+
     print("Running run_model task")
-    test_graph.delay()
+
+    path_name = 'kbandit_{num_levers}_{epsilon}.h5'.format(num_levers=len(reward_figure['data']),epsilon=epsilon_value)
+
+    hdf_file_path = '/Users/befeltingu/RLResearch/Data/' + path_name
+
+    epochs = 1000
+
+    k_arm_bandit.delay(hdf_file_path, reward_figure, epochs, epsilon_value)
+
+
+@app.callback(
+    dash.dependencies.Output('interval-container','children'),
+    [],
+    [],
+    [Event('run-model', 'click')]
+)
+def run_model():
+
+    return dcc.Interval(
+        id='interval-component',
+        interval=2 * 1000,  # in milliseconds
+        n_intervals=0
+    )
+
+
+@app.callback(
+    dash.dependencies.Output('model-state','children'),
+    [],
+    [dash.dependencies.State('model-state','children')],
+    [Event('toggle-model', 'click')]
+)
+def toggle_model(model_state):
+
+    if model_state == 'stop':
+        return "start"
+
+    else:
+        return "stop"
 
 
 

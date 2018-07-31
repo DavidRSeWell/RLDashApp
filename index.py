@@ -14,8 +14,7 @@ from Dash.apps import bayes_predict, ES_1,datatable_example,graph_test,k_arm_ban
                     <a class="nav-link" href="#">Sign out</a>
                 </li>
             </ul>
-        </nav>
-
+</nav>
 '''
 
 app.layout = html.Div([
@@ -103,4 +102,5 @@ def display_page(pathname):
         return "404"
 
 if __name__ == '__main__':
+
     app.run_server(debug=True)

@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="989974e0-bdb4-4c61-a99b-46499ec261df" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/rl_basic_tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/setup_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data/setup_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Untitled.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebooks/Untitled1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Untitled1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/test_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/test_tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/rl_basic_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/rl_basic_tasks.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,32 +18,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="k_arm_bandit.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="k_arm_bandit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1465">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="250">
+              <caret line="213" column="60" lean-forward="true" selection-start-line="213" selection-start-column="60" selection-end-line="213" selection-end-column="60" />
               <folding>
-                <element signature="e#3535#4262#0" />
+                <element signature="e#24#35#0" expanded="true" />
+                <element signature="e#3068#3815#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rl_basic_tasks.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rl_basic_tasks.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tasks/rl_basic_tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+            <state relative-caret-position="253">
+              <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#157#223#0" />
+                <element signature="e#253#382#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_tasks.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasks/test_tasks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="35" column="52" lean-forward="true" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -70,6 +72,8 @@
       <find>_dash</find>
       <find>dash_table_experiments</find>
       <find>run-model</find>
+      <find>interval</find>
+      <find>dcc.Interval</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,15 +92,15 @@
         <option value="$PROJECT_DIR$/Dash/apps/graph_test.py" />
         <option value="$PROJECT_DIR$/Dash/apps/datatable_example.py" />
         <option value="$PROJECT_DIR$/Dash/apps/bayes_predict.py" />
-        <option value="$PROJECT_DIR$/index.py" />
         <option value="$PROJECT_DIR$/sql_utils.py" />
         <option value="$PROJECT_DIR$/Data/__init__.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/tasks/__init__.py" />
         <option value="$PROJECT_DIR$/Data/setup_tables.py" />
         <option value="$PROJECT_DIR$/tasks/test_tasks.py" />
-        <option value="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" />
+        <option value="$PROJECT_DIR$/index.py" />
         <option value="$PROJECT_DIR$/tasks/rl_basic_tasks.py" />
+        <option value="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" />
       </list>
     </option>
   </component>
@@ -120,7 +124,7 @@
             <path>
               <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
               <item name="RLResearch" type="462c0819:PsiDirectoryNode" />
-              <item name="Dash" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
@@ -210,6 +214,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="rl_basic_tasks" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RLResearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tasks" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tasks/rl_basic_tasks.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="setup_tables" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RLResearch" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -233,10 +255,12 @@
       <item itemvalue="Python.datatable_example" />
       <item itemvalue="Python.graph_callback_example" />
       <item itemvalue="Python.setup_tables" />
+      <item itemvalue="Python.rl_basic_tasks" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.index" />
+        <item itemvalue="Python.rl_basic_tasks" />
         <item itemvalue="Python.setup_tables" />
         <item itemvalue="Python.graph_callback_example" />
         <item itemvalue="Python.datatable_example" />
@@ -261,24 +285,31 @@
       <option name="project" value="LOCAL" />
       <updated>1532737703257</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="DS - Got simple celery example working with plotting a graph">
+      <created>1532818688520</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1532818688520</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17569445" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17569445" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900944" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3042453" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36792454" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.24646227" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3231132" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -292,7 +323,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DS - Working on getting task que working with celery and redis" />
-    <option name="LAST_COMMIT_MESSAGE" value="DS - Working on getting task que working with celery and redis" />
+    <MESSAGE value="DS - Got simple celery example working with plotting a graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="DS - Got simple celery example working with plotting a graph" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -312,11 +344,6 @@
           <line>59</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py</url>
-          <line>191</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -325,43 +352,53 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="24" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>figure['data'][0]['mean']</expression-string>
+        <expression-string>parameter_form[1]['props']['children']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>figure['data'][0]['name']</expression-string>
+        <expression-string>parameter_form[1]['props'].keys()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>figure['data']</expression-string>
+        <expression-string>parameter_form[1]['props']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>figure.keys()</expression-string>
+        <expression-string>parameter_form[1].keys()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>figure</expression-string>
+        <expression-string>parameter_form[1]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>db_df</expression-string>
+        <expression-string>parameter_form[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>datatable_example.layout</expression-string>
+        <expression-string>parameter_form</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>1 / i</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>avg_reward</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -697,23 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Data/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -750,32 +770,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/test_tasks.py">
+    <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#682#1948#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
+    <entry file="file://$PROJECT_DIR$/tasks/test_tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1465">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="232">
+          <caret line="35" column="52" lean-forward="true" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
           <folding>
-            <element signature="e#3535#4262#0" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasks/rl_basic_tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+        <state relative-caret-position="253">
+          <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#157#223#0" />
+            <element signature="e#253#382#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="213" column="60" lean-forward="true" selection-start-line="213" selection-start-column="60" selection-end-line="213" selection-end-column="60" />
+          <folding>
+            <element signature="e#24#35#0" expanded="true" />
+            <element signature="e#3068#3815#0" />
           </folding>
         </state>
       </provider>
