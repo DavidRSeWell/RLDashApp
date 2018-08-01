@@ -46,7 +46,7 @@ app.layout = html.Div([
                     ,href="/test_graph"),
 
 
-                ], className="btn-group-vertical"),
+                ], className="btn-group-vertical")
 
             ],className="col-sm-2"),
 
@@ -55,7 +55,7 @@ app.layout = html.Div([
                 dcc.Location(id='url', refresh=False),
                 html.Div(id='page-content')
 
-            ], className="col-sm-10"),
+            ], className="col-sm-10")
 
 
         ],className="row"),
@@ -100,6 +100,8 @@ def display_page(pathname):
 
     else:
         return "404"
+
+
 
 if __name__ == '__main__':
 

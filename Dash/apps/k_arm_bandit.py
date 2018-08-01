@@ -10,6 +10,8 @@ import plotly.figure_factory as ff
 import json
 import h5py
 import time
+import dash_table_experiments as dt
+import os
 
 from app import app
 from dash.dependencies import Input, Output, State,Event
@@ -91,24 +93,49 @@ layout = html.Div([
 
             html.H3(children="Loss Graph",className='text-center'),
 
-            dcc.Graph(id='loss-graph')
+            dcc.Graph(id='reward-graph')
 
         ],className="col-sm-12")
 
     ],className="row",style={"margin-top":"10px"}),
+
+    html.Div([
+        html.Div([
+            html.H4('Completed tests DataTable'),
+            dt.DataTable(
+                    rows=[],
+                    # optional - sets the order of columns
+                    columns=['files'],
+                    row_selectable=True,
+                    filterable=True,
+                    sortable=True,
+                    selected_row_indices=[],
+                    id='datatable-file'
+                )
+
+        ],id='file-datatable-container',className="col-sm-12"),
+
+        html.Button(id='fetch-files', n_clicks=0, type="button", children='GetFiles', className="btn btn-primary"),
+        html.Button(id='delete-files', n_clicks=0, type="button", children='DeleteFiles', className="btn btn-danger")
+
+    ],className="row"),
 
     html.Div(id='interval-container'),
 
     # Hidden div inside the app that stores the intermediate value
     html.Div(id='model-state',children='stop'),
 
-    html.Div(id='run-model-hidden', style={'display': 'none'})
+    html.Div(id='run-model-hidden', style={'display': 'none'}),
+    html.Div(id='place-holder-div', style={'display': 'none'}),
 
 
-],style = {"margin-top":"50px"},className="container",id='main-container')
+],style = {"margin-top":"50px","margin-left":"0px","margin-right":"0px"},className="container",id='main-container')
 
 
 
+#################
+# Lever Graph
+#################
 @app.callback(
     dash.dependencies.Output('reward-distribution','figure'),
     [dash.dependencies.Input('submit-button','n_clicks')],
@@ -151,8 +178,9 @@ def update_current_sample(n_clicks,input1):
 
     return fig
 
+'''
 @app.callback(
-    dash.dependencies.Output('loss-graph','figure'),
+    dash.dependencies.Output('reward-graph','figure'),
     [dash.dependencies.Input('interval-component','n_intervals')],
     [dash.dependencies.State('model-state','children'),
      dash.dependencies.State('epsilon-value', 'value'),
@@ -196,8 +224,65 @@ def display_loss(n_clicks,model_state,epsilon_value,lever_number):
     f.close()
 
     return figure
+'''
 
 
+#################
+# Reward Graph
+#################
+
+@app.callback(
+    Output('reward-graph', 'figure'),
+    [Input('datatable-file', 'selected_row_indices')],
+    [State('datatable-file', 'rows')])
+def update_figure(selected_row_indices,rows):
+
+    dff = pd.DataFrame(rows)
+
+    traces = []
+
+    for i in (selected_row_indices or []):
+
+        file_name = str(rows[i]['files'])
+
+        file_path = '/Users/befeltingu/RLResearch/Data/k_arm_bandit/' + file_name
+
+        f = h5py.File(file_path, 'r', libver='latest',
+                      swmr=True)
+
+        dset = f["avg_reward"][:]  # fetch all the datas
+
+        num_bandits = file_name.split('_')[1]
+
+        #epsilon = float(file_name.split('_')[-1][:3])
+
+        trace = go.Scatter(
+                    x=[x for x in range(len(dset))],
+                    y=dset,
+                    name=file_name
+
+                )
+
+        traces.append(trace)
+
+        f.close()
+
+    figure = {
+        'data': traces,
+        'layout': go.Layout(
+            xaxis={'title': 'iteration'},
+            yaxis={'title': 'loss'},
+            margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+            #legend={'x': 0, 'y': 1},
+        )
+    }
+
+    return figure
+
+
+#################
+# Run Model
+#################
 @app.callback(
     dash.dependencies.Output('run-model-hidden','children'),
     [],
@@ -211,13 +296,55 @@ def run_model(reward_figure,epsilon_value):
 
     path_name = 'kbandit_{num_levers}_{epsilon}.h5'.format(num_levers=len(reward_figure['data']),epsilon=epsilon_value)
 
-    hdf_file_path = '/Users/befeltingu/RLResearch/Data/' + path_name
+    hdf_file_path = '/Users/befeltingu/RLResearch/Data/k_arm_bandit/' + path_name
 
     epochs = 1000
 
-    k_arm_bandit.delay(hdf_file_path, reward_figure, epochs, epsilon_value)
+    result = k_arm_bandit.delay(hdf_file_path, reward_figure, epochs, epsilon_value)
+
+    dset, avg_reward, q_values, count_values = result.get()
+
+    print("Done running model")
+    print("avg reward: " + str(avg_reward))
+
+#################
+# File DataTable
+#################
+@app.callback(
+    dash.dependencies.Output('datatable-file','rows'),
+    [],
+    [],
+    [Event('fetch-files','click')]
+)
+def populate_file_container():
 
 
+    file_list = []
+    for file in os.listdir('/Users/befeltingu/RLResearch/Data/k_arm_bandit/'):
+        file_list.append(file)
+
+    file_df = pd.DataFrame({'files':file_list})
+
+
+    return file_df.to_dict('records')
+
+@app.callback(
+    dash.dependencies.Output('place-holder-div','children'),
+    [],
+    [],
+    [Event('delete-files','click')]
+)
+def populate_file_container():
+
+    for file in os.listdir('/Users/befeltingu/RLResearch/Data/k_arm_bandit/'):
+
+        os.remove('/Users/befeltingu/RLResearch/Data/k_arm_bandit/' + file)
+
+    return ''
+
+
+
+'''
 @app.callback(
     dash.dependencies.Output('interval-container','children'),
     [],
@@ -230,7 +357,7 @@ def run_model():
         id='interval-component',
         interval=2 * 1000,  # in milliseconds
         n_intervals=0
-    )
+    )'''
 
 
 @app.callback(

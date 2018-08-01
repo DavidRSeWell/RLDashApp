@@ -105,7 +105,20 @@ def k_arm_bandit(hdf_file,lever_data,epochs,epsilon):
 
         dset.flush()
 
+    data = list(dset[:])
+
+    q_dset = f.create_dataset("q_values",data=q_values)
+
+    lever_count = f.create_dataset("lever_count",data=count_values)
+
+    q_dset.flush()
+
+    lever_count.flush()
+
+
     f.close()
+
+    return data,avg_reward,list(q_values),list(count_values)
 
 
 
@@ -131,7 +144,9 @@ if __name__ == '__main__':
         ]
     }
 
-    k_arm_bandit('/Users/befeltingu/RLResearch/Data/test_loss.h5',lever_data,1000,.1)
+    data, avg_reward, q_values, count_values = k_arm_bandit('/Users/befeltingu/RLResearch/Data/test_loss.h5',lever_data,1000,.1)
+
+    print("done testing brosehpha")
 
 
 
