@@ -34,12 +34,46 @@ def execute_sql(db,q):
     conn.close()
 
 
+def select_action(q_values,count_values,epsilon,num_levers,t,algorithm_type,c=1):
+
+    action = None  # will be the index of the lever selected
+
+    if algorithm_type == 'greedy':
+
+        rand_uniform = np.random.uniform(0, 1)
+
+        if rand_uniform <= epsilon:
+            # take random action
+            action = np.random.randint(0, num_levers)
+        else:
+            action = np.argmax(q_values)
+
+    elif algorithm_type == 'UCB':
+
+        ucb_values = []
+        for i in range(len(q_values)):
+
+            ucb_value = q_values[i] + c*np.sqrt( np.log(t) / float(count_values[i] ) )
+
+            ucb_values.append(ucb_value)
+
+        action = np.argmax(ucb_values)
+
+    elif algorithm_type == 'greedy-2':
+        pass
+
+    else:
+        print("Error incorrect algorithm type")
+
+    return action
+
+
 
 celery_app = Celery('rl_basic', backend='redis://localhost', broker='redis://localhost')
 
 
 @celery_app.task(name='tasks.rl_basic_tasks.k_arm_bandit')
-def k_arm_bandit(hdf_file,lever_data,epochs,epsilon):
+def k_arm_bandit(hdf_file,lever_data,epochs,epsilon,init_q_value,algo_type):
 
     '''
 
@@ -62,7 +96,7 @@ def k_arm_bandit(hdf_file,lever_data,epochs,epsilon):
 
     count_values = np.zeros(len(lever_data))
 
-    q_values = np.zeros(len(lever_data))
+    q_values = np.ones(len(lever_data))*init_q_value
 
     avg_reward = 0
     for i in range(1,epochs + 1):
@@ -75,13 +109,7 @@ def k_arm_bandit(hdf_file,lever_data,epochs,epsilon):
 
         rand_uniform = np.random.uniform(0,1)
 
-        action = None # will be the index of the lever selected
-
-        if rand_uniform <= epsilon:
-            # take random action
-            action = np.random.randint(0,len(lever_data))
-        else:
-            action = np.argmax(q_values)
+        action = select_action(q_values,count_values,epsilon,len(lever_data),i,algo_type,1)
 
         mean_current_lever = lever_data[action]['mean']
 
@@ -111,10 +139,17 @@ def k_arm_bandit(hdf_file,lever_data,epochs,epsilon):
 
     lever_count = f.create_dataset("lever_count",data=count_values)
 
+    epsilon = f.create_dataset("epsilon", data=epsilon)
+
+    init_q = f.create_dataset("init_q", data=init_q_value)
+
     q_dset.flush()
 
     lever_count.flush()
 
+    init_q.flush()
+
+    epsilon.flush()
 
     f.close()
 
@@ -144,7 +179,8 @@ if __name__ == '__main__':
         ]
     }
 
-    data, avg_reward, q_values, count_values = k_arm_bandit('/Users/befeltingu/RLResearch/Data/test_loss.h5',lever_data,1000,.1)
+
+    data, avg_reward, q_values, count_values = k_arm_bandit('/Users/befeltingu/RLResearch/Data/test_loss.h5',lever_data,1000,.1,1,'greedy')
 
     print("done testing brosehpha")
 

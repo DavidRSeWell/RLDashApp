@@ -17,7 +17,8 @@ from igraph import *
 
 
 
-nr_vertices = 25
+nr_vertices = 4
+
 v_label = map(str, range(nr_vertices))
 G = Graph.Tree(nr_vertices, 2) # 2 stands for children number
 lay = G.layout('rt')
@@ -27,6 +28,7 @@ Y = [lay[k][1] for k in range(nr_vertices)]
 M = max(Y)
 
 es = EdgeSeq(G) # sequence of edges
+
 E = [e.tuple for e in G.es] # list of edges
 
 L = len(position)

@@ -4,8 +4,8 @@ import dash_table_experiments as dt
 
 from dash.dependencies import Input, Output,State
 from app import app
-from Dash.apps import bayes_predict, ES_1,datatable_example,graph_test,k_arm_bandit
-
+from Dash.apps import bayes_predict, ES_1,datatable_example,graph_test,k_arm_bandit,dash_gym
+from Dash.apps.gym import blackjack
 '''
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-primary" href="#">Machine Learning</a>
@@ -44,6 +44,13 @@ app.layout = html.Div([
                     html.A(
                         html.Button('TestGraph',type="button", className="btn btn-primary")
                     ,href="/test_graph"),
+
+                    html.A(
+                        html.Button('GYM',type="button", className="btn btn-primary")
+                    ,href="/dash_gym"),
+                    html.A(
+                        html.Button('BlackJack',type="button", className="btn btn-primary")
+                    ,href="/blackjack"),
 
 
                 ], className="btn-group-vertical")
@@ -93,6 +100,13 @@ def display_page(pathname):
 
         return k_arm_bandit.layout
 
+    elif pathname == '/dash_gym':
+
+        return dash_gym.layout
+
+    elif pathname == '/blackjack':
+
+        return blackjack.layout
 
     elif pathname == '/':
 
