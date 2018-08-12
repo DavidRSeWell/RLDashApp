@@ -64,7 +64,7 @@ layout = html.Div([
     html.H4('Gapminder DataTable'),
 
     dt.DataTable(
-        rows=DF_GAPMINDER.to_dict('records'),
+        rows=DF_SIMPLE.to_dict('records'),
         # optional - sets the order of columns
         columns=sorted(DF_GAPMINDER.columns),
         row_selectable=True,
