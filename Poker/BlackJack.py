@@ -34,10 +34,40 @@ class PolicyIterPlayer:
 
             self.policy_value[i] = 0
 
-    def make_play(self,dealer_card):
-        return self.policy[dealer_card]
+    def make_play(self,cards):
 
-    def evaluate_policy(self):
+        sum_cards = np.array(cards).sum()
+
+        if sum_cards == 2:
+            return "HIT"
+
+        if 1 in cards:
+            sum_cards_use_ace = sum_cards + 10
+            if sum_cards_use_ace <= 21:
+                sum_cards = sum_cards_use_ace
+
+        if sum_cards < 17:
+            return "HIT"
+
+        elif sum_cards > 21:
+
+            return "BUST"
+
+        else:
+
+            return "STAY"
+
+    def evaluate_hand(self,cards):
+        sum_cards = np.array(cards).sum()
+
+        if 1 in cards:
+            sum_cards_use_ace = sum_cards + 10
+            if sum_cards_use_ace <= 21:
+                sum_cards = sum_cards_use_ace
+
+        return sum_cards
+
+    def evaluate_policy_0(self):
         '''
         using the algorithm from barton
         2. Policy Evaluation
@@ -64,7 +94,7 @@ class PolicyIterPlayer:
 
                 pc1 = self.dealer.deal_and_replace()
                 pc2 = self.dealer.deal_and_replace()
-                player_score = pc1 + pc2
+                player_hand = [pc1,pc2]
 
                 dealer_down_card = self.dealer.deal_and_replace()
 
@@ -91,7 +121,9 @@ class PolicyIterPlayer:
                     state_value += self.bet_size
                     continue
 
-                dealer_score = dealer_cards.sum()
+                dealer_score = self.dealer.current_score
+
+                player_score = self.evaluate_hand(player_hand)
 
                 if player_score > dealer_score:
 
@@ -106,7 +138,102 @@ class PolicyIterPlayer:
 
 
             # finished evaluating the current state
-            self.policy_value[state] = state_value / self.evaluation_iterations # take the average
+            self.policy_value[state] = state_value / float(self.evaluation_iterations) # take the average
+
+    def evaluate_policy_1(self):
+        '''
+        using the algorithm from barton
+        2. Policy Evaluation
+           Repeat
+           ∆ ← 0
+           For each s ∈ S:
+                v ← V (s)
+                V (s) ← P s 0 ,r p(s 0 , r|s, π(s)) r + γV (s 0 ) 
+                ∆ ← max(∆, |v − V (s)|)
+           until ∆ < θ (a small positive number)
+
+        because in this form of blackjack there is no value of the future state
+        it is easier to just simulate the current state a large number of times and
+        obtain the average and use the for the value at the state. If the policy at
+        the state is to fold then the value is 0
+        :return:
+        '''
+
+        for state in range(1,11):
+            # just evaluate the state assuming you have called
+            state_value = 0
+            dealer_up_card = state
+            for iter in range(self.evaluation_iterations):
+
+                pc1 = self.dealer.deal_and_replace()
+                pc2 = self.dealer.deal_and_replace()
+                player_hand = [pc1,pc2]
+
+                dealer_down_card = self.dealer.deal_and_replace()
+
+                # Player just mimics the dealers strategy in this version
+                player_state = "HIT"
+                while (player_state == "HIT"):
+
+                    player_state = self.make_play(player_hand)
+
+                    if player_state == "STAY":
+                        break
+
+                    elif player_state == "BUST":
+                        break
+
+                    else:
+
+                        new_card = self.dealer.deal_and_replace()
+                        player_hand += [new_card]
+
+                if player_state == "BUST":
+                    state_value -= self.bet_size
+                    continue
+
+                # now do the same loop for the dealer
+                # the dealer is using a different policy
+                dealer_cards = [dealer_up_card,dealer_down_card]
+                dealer_state = "HIT"
+                while (dealer_state == "HIT"):
+
+                    dealer_state = self.dealer.make_play(dealer_cards)
+
+                    if dealer_state == "STAY":
+                        break
+
+                    elif dealer_state == "BUST":
+                        break
+
+                    else:
+
+                        new_card = self.dealer.deal_and_replace()
+                        dealer_cards += [new_card]
+
+                if dealer_state == "BUST":
+                    state_value += self.bet_size
+                    continue
+
+
+                dealer_score = self.evaluate_hand(dealer_cards)
+
+                player_score = self.evaluate_hand(player_hand)
+
+                if player_score > dealer_score:
+
+                    state_value += self.bet_size
+
+                elif dealer_score > player_score:
+
+                    state_value -= self.bet_size
+
+                else:
+                    state_value += 0 # its a chop do nothing
+
+
+            # finished evaluating the current state
+            self.policy_value[state] = state_value / float(self.evaluation_iterations) # take the average
 
     def improve_policy(self):
         '''
@@ -123,17 +250,6 @@ class PolicyIterPlayer:
 
             else:
                 self.policy[state] = 1
-
-
-
-
-
-
-
-
-
-
-
 
 class Dealer:
 
@@ -238,17 +354,65 @@ def simulate_simple_game():
     # STEP 1 INIT STEPS
     dealer = Dealer(1)
 
-    player = PolicyIterPlayer()
+    ante_size = 1
+    bet_size = 10
+    eval_iters = 1000
+
+    player = PolicyIterPlayer(ante_size=ante_size,bet_size=bet_size,eval_iters=eval_iters,dealer=dealer)
 
     player.init_policy()
 
-    for episode in range(5):
+    for episode in range(15):
 
-        player.evaluate_policy()
+        player.evaluate_policy_0()
 
         player.improve_policy()
 
 
+    return player
+
+def simulate_simple_game2():
+
+    '''
+    same as simple game except now the player
+    attempts to make 'good' plays
+    :return:
+    '''
+
+    # STEP 1 INIT STEPS
+    dealer = Dealer(1)
+
+    ante_size = 1
+    bet_size = 10
+    eval_iters = 100000
+
+    player = PolicyIterPlayer(ante_size=ante_size, bet_size=bet_size, eval_iters=eval_iters, dealer=dealer)
+
+    player.init_policy()
+
+    for episode in range(5):
+        player.evaluate_policy_1()
+
+        player.improve_policy()
+
+    return player
+
+
+
 if __name__ == '__main__':
 
-    print("")
+    import json
+    player = simulate_simple_game2()
+
+
+    print("Done running policy iteration for simple blackjack")
+
+    print("Current value function")
+
+    print(json.dumps(player.policy_value))
+
+    print("Current policy")
+
+    print(json.dumps(player.policy))
+
+
