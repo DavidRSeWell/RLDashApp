@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 import numpy as np
 import pandas as pd
 import random
@@ -10,17 +12,18 @@ from collections import deque
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-
 def get_similar_vectors(state,state_feature_vector ,layer_weights ,num_samples ,top_n):
     '''
         Takes in a state and returns the top x
         most similar states
     '''
-    sampled_feature_vectors, sample_states = sample_state_space(state,num_samples ,layer_weights)
+    sampled_feature_vectors, sample_states = sample_state_space(state,num_samples,layer_weights)
 
     cosine_scores = []
     for i ,j in enumerate(sampled_feature_vectors):
+
         cosine_score = cosine_similarity(state_feature_vector ,j)
+
         cosine_scores.append([i ,cosine_score])
 
     cosine_score_df = pd.DataFrame(cosine_scores ,columns=["index" ,"score"])
@@ -32,7 +35,6 @@ def get_similar_vectors(state,state_feature_vector ,layer_weights ,num_samples ,
     top_samples = [sample_states[top_index] for top_index in top_indexes]
 
     return top_samples
-
 
 def sample_state_space(state,num_samples, layer_weights):
     '''
@@ -50,7 +52,7 @@ def sample_state_space(state,num_samples, layer_weights):
 
         sampled_state = [dealer_hand, player_hand, ace_or_not]
 
-        if sampled_state == state: # dont sample the same state as your interested in
+        if (sampled_state == state) or (sampled_state in sample_list): # dont sample the same state as your interested in
             continue
 
         sample_list.append(sampled_state)
@@ -112,7 +114,7 @@ if __name__ == '__main__':
 
         state = list(state_1[0])
 
-        top_hands = get_similar_vectors(state,state_feature_vector, layer_1_w, 1000, 10)
+        top_hands = get_similar_vectors(state,state_feature_vector, layer_1_w, 339, 10)
 
         print("Current State")
         print(str(state_1))

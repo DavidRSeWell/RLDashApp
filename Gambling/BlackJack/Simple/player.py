@@ -1,7 +1,73 @@
 # -*- encoding: utf-8 -*-
 
-import numpy as np
 import random
+import gym
+import numpy as np
+import pandas as pd
+import warnings
+
+from collections import deque
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.optimizers import Adam
+from sklearn.metrics.pairwise import cosine_similarity
+from keras import backend as K
+
+warnings.filterwarnings("ignore",category=DeprecationWarning)
+
+
+
+def get_similar_vectors(state,state_feature_vector ,layer_weights ,num_samples ,top_n):
+    '''
+        Takes in a state and returns the top x
+        most similar states
+    '''
+
+    state = list(state[0])
+    sampled_feature_vectors, sample_states = sample_state_space(state,num_samples,layer_weights)
+
+    cosine_scores = []
+    for i ,j in enumerate(sampled_feature_vectors):
+
+        cosine_score = cosine_similarity(state_feature_vector ,j)
+
+        cosine_scores.append([i ,cosine_score])
+
+    cosine_score_df = pd.DataFrame(cosine_scores ,columns=["index" ,"score"])
+
+    cosine_score_df = cosine_score_df.sort_values(by=["score"] ,ascending=False).iloc[:top_n]
+
+    top_indexes = cosine_score_df["index"].tolist()
+
+    top_samples = [sample_states[top_index] for top_index in top_indexes]
+
+    return top_samples
+
+
+def sample_state_space(state,num_samples, layer_weights):
+    '''
+        Want to be able to randomly sample from the space
+        this will be game dependent. In the case of blackJack
+        Just sample a dealer hand and then a random sum for the
+        player between 4 and 21 and then sample
+    '''
+    sample_list = []
+    while len(sample_list) < num_samples:
+
+        dealer_hand = np.random.randint(1, 11)
+        player_hand = np.random.randint(4, 21)
+        ace_or_not = np.random.binomial(1, (1.0 / 13.0))
+
+        sampled_state = [dealer_hand, player_hand, ace_or_not]
+
+        if (sampled_state == state) or (sampled_state in sample_list): # dont sample the same state as your interested in
+            continue
+
+        sample_list.append(sampled_state)
+
+    feature_vectors = np.matmul(np.array(sample_list), layer_weights)
+
+    return feature_vectors, sample_list
 
 
 class PolicyIterPlayer:
@@ -250,168 +316,171 @@ class PolicyIterPlayer:
             else:
                 self.policy[state] = 1
 
-class Dealer:
-
-    def __init__(self,decks):
-        # integer representing the number of decks the dealer has
-        self.decks = decks
-        self.shoe = []
-        self.showing_card = None
-        self.current_score = None
-
-    def deal_card(self):
-
-        draw_card = random.choice(self.shoe)
-
-        self.shoe.remove(draw_card)
-
-        return draw_card
-
-    def deal_and_replace(self):
-
-        rand_card = np.random.randint(1,14)
-        if rand_card >= 10:
-            return 10
-        else:
-            return rand_card
-    # pass in deck and return random sorted deck
-    def shuffle(self,deck):
-
-        old_deck = deck
-        new_deck = []
-        while(len(old_deck) > 0):
-
-            draw = random.choice(old_deck)
-            new_deck.append(draw)
-            old_deck.remove(draw)
-
-        return new_deck
-
-    # either set the shoe for the first time or reset it
-    def set_shoe(self):
-
-        clean_shoe = []
-        for di in range(self.decks):
-            # dont have to worry about suites for blackjack
-            for i in range(1,5):
-                # A = 1
-                # 2 = 2
-                # ....
-                for j in range(1,14):
-                    clean_shoe.append(j)
 
 
-        shuffle_shoe = self.shuffle(clean_shoe)
-        self.shoe = shuffle_shoe
+# Lets build out our Deep RL player we are going to use the DQN model as described in Deepminds
+# paper https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf
+class DeepPlayer:
+    # simple DQN agent
+    def __init__(self, state_size, action_size):
 
-    def make_play(self,cards):
+        self.state_size = state_size
+        self.actions = {0:'HIT' ,1:'STAY'}
+        self.action_size = action_size
+        self.feature_layer = None
+        self.memory = deque(maxlen=2000)
+        self.gamma = 0.95    # discount rate
+        self.epsilon = 0.65  # exploration rate
+        self.epsilon_min = 0.01
+        self.epsilon_decay = 0.995
+        self.learning_rate = 0.001
+        self.model = self._build_model()
 
+    def _build_model(self):
+        # Neural Net for Deep-Q learning Model
+        model = Sequential()
+        model.add(Dense( 4 *self.state_size, input_dim=self.state_size, activation='relu',use_bias=False))
+        model.add(Dense( 4 *self.state_size, activation='relu'))
+        model.add(Dense(self.action_size, activation='linear'))
+        model.compile(loss='mse' ,optimizer=Adam(lr=self.learning_rate))
+        return model
+
+    def create_policy_df(self):
+
+
+        policy_array = []
+        # loop over dealer up card
+        for i in range(1,11):
+            # loop over possible player totals
+            for j in range(4,22):
+                # whether player is holding playable ace
+                for k in range(2):
+
+                    state = np.array([[i,j,k]])
+
+                    action = self.make_max_play(state)
+
+                    policy_array.append([i,j,k,action])
+
+
+        policy_df = pd.DataFrame(policy_array,columns=['Dealer','Player','Ace','Policy'])
+
+        policy_df.to_pickle('/Users/befeltingu/DeepRL/Data/DataFrames/blackjack_policy0')
+
+    def create_similar_minibatch(self,minibatch):
+        pass
+
+
+    def make_play(self, state):
+
+        if np.random.rand() <= self.epsilon:
+            return random.randrange(self.action_size)
+        act_values = self.model.predict(state)
+        return np.argmax(act_values[0])  # returns action
+
+    def make_max_play(self,state):
+
+        act_values = self.model.predict(state)
+        return np.argmax(act_values[0])  # returns action
+
+    def get_action_number(self ,action_string):
+
+        for key,value in self.actions.iteritems():
+
+            if action_string == value:
+                return key
+
+        print("Error in get_action_number incorrect action string {}".format(action_string))
+
+    def get_player_state(self ,cards):
+
+        usable_ace = 0
         sum_cards = np.array(cards).sum()
 
-        if sum_cards == 2:
-            return "HIT"
+        if 1 in cards:
+            sum_cards_use_ace = sum_cards + 10
+            if sum_cards_use_ace <= 21:
+                usable_ace = 1
+                sum_cards = sum_cards_use_ace
+
+        return sum_cards, usable_ace
+
+    def get_player_score(self,cards):
+
+        sum_cards = np.array(cards).sum()
 
         if 1 in cards:
             sum_cards_use_ace = sum_cards + 10
             if sum_cards_use_ace <= 21:
                 sum_cards = sum_cards_use_ace
 
-        self.current_score = sum_cards
-        if sum_cards < 17:
-            return "HIT"
+        return sum_cards
 
-        elif sum_cards > 21:
+    def load(self, name):
+        self.model.load_weights(name)
 
-            return "BUST"
+    def remember(self, state, action, reward, next_state, done):
+        self.memory.append((state, action, reward, next_state, done))
 
-        else:
+    def replay(self, batch_size):
+        minibatch = random.sample(self.memory, batch_size)
 
-            return "STAY"
+        for state, action, reward, next_state, done in minibatch:
 
+            target = reward
 
-def simulate_simple_game():
+            if not done:
+                target = (reward + self.gamma *
+                          np.amax(self.model.predict(next_state)[0]))
+            target_f = self.model.predict(state)
 
-    '''
-    Using this game to demonstrate policy iteration
+            target_f[0][action] = target
 
-    The game is played different from regular blackjack
-    first the dealer is dealt one up card and one downcard
-    The player first antes then desides based off of what
-    the dealer is showing to place a bet or not. The bet size
-    is fixed before hand so the player cant just bet more the
-    more of an advantage he has
+            self.model.fit(state, target_f, epochs=1, verbose=0)
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay
 
-    1: init policy :
+    def replay_similarity(self, batch_size):
 
-    2: policy evaluation :
+        minibatch = random.sample(self.memory, batch_size)
 
-    3: policy improvement :
+        for state, action, reward, next_state, done in minibatch:
 
-    :return:
-    '''
+            target = reward
 
-    # STEP 1 INIT STEPS
-    dealer = Dealer(1)
+            if not done:
 
-    ante_size = 1
-    bet_size = 10
-    eval_iters = 1000
+                target = (reward + self.gamma *
+                          np.amax(self.model.predict(next_state)[0]))
+            target_f = self.model.predict(state)
 
-    player = PolicyIterPlayer(ante_size=ante_size,bet_size=bet_size,eval_iters=eval_iters,dealer=dealer)
+            target_f[0][action] = target
 
-    player.init_policy()
+            self.model.fit(state, target_f, epochs=1, verbose=0)
 
-    for episode in range(15):
+            # using the same reward get a bunch of similar states and fit the model with the expectation that
+            # similar states would lead to similar outcomes especailly in the case when the episode is finished.
 
-        player.evaluate_policy_0()
+            state_feature_vector = np.matmul(state, self.feature_layer)
 
-        player.improve_policy()
+            similar_states = get_similar_vectors(state,state_feature_vector,self.feature_layer,250,1)
 
+            if done:
+                for similar_state in similar_states:
 
-    return player
+                    similar_state = np.reshape(similar_state,(1,3))
 
-def simulate_simple_game2():
+                    target_f = self.model.predict(similar_state)
 
-    '''
-    same as simple game except now the player
-    attempts to make 'good' plays
-    :return:
-    '''
+                    target_f[0][action] = target
 
-    # STEP 1 INIT STEPS
-    dealer = Dealer(1)
-
-    ante_size = 1
-    bet_size = 10
-    eval_iters = 100000
-
-    player = PolicyIterPlayer(ante_size=ante_size, bet_size=bet_size, eval_iters=eval_iters, dealer=dealer)
-
-    player.init_policy()
-
-    for episode in range(5):
-        player.evaluate_policy_1()
-
-        player.improve_policy()
-
-    return player
+                    self.model.fit(similar_state, target_f, epochs=1, verbose=0)
 
 
 
-if __name__ == '__main__':
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay
 
-    import json
-    player = simulate_simple_game2()
-
-
-    print("Done running policy iteration for simple blackjack")
-
-    print("Current value function")
-
-    print(json.dumps(player.policy_value))
-
-    print("Current policy")
-
-    print(json.dumps(player.policy))
-
+    def save(self, name):
+        self.model.save_weights(name)
 

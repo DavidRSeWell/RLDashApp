@@ -355,6 +355,22 @@ def update_figure(selected_row_indices,rows):
 
         f.close()
 
+    if len(q_values) == 0:
+
+        table = dt.DataTable(
+            rows=[],
+            # optional - sets the order of columns
+            columns=[],
+            row_selectable=True,
+            filterable=True,
+            sortable=True,
+            selected_row_indices=[],
+            id='datatable-lever-counts'
+        )
+
+        return table
+
+
     columns = ["lever_name"] + ["lever_" + str(i) for i in range(len(q_values[0]) - 1)]
 
     q_df = pd.DataFrame(q_values,columns=columns)

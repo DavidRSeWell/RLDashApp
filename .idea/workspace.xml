@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="989974e0-bdb4-4c61-a99b-46499ec261df" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Dash/apps/gym/blackjack_simple.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Poker/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/test_similarity_space.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notebooks/BlackJack/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notebooks/__init__.py" afterDir="false" />
+    <list default="true" id="989974e0-bdb4-4c61-a99b-46499ec261df" name="Default" comment="DS - Started playing around with similarity state space idea for faster RL applications">
+      <change afterPath="$PROJECT_DIR$/Dash/apps/file_upload.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gambling/BlackJack/Simple/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gambling/BlackJack/Simple/dealer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gambling/BlackJack/Simple/player.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Gambling/BlackJack/Simple/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RLResearch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RLResearch.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dash/apps/dash_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dash/apps/dash_gym.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash/apps/datatable_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dash/apps/datatable_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Poker/BlackJack.py" beforeDir="false" afterPath="$PROJECT_DIR$/Poker/BlackJack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test_similarity_space.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test_similarity_space.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,64 +22,71 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/RLResearch$test_similarity_space.coverage" NAME="test_similarity_space Coverage Results" MODIFIED="1535075673833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests" />
+    <SUITE FILE_PATH="coverage/RLResearch$run.coverage" NAME="run Coverage Results" MODIFIED="1544672425242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Gambling/BlackJack/Simple" />
+    <SUITE FILE_PATH="coverage/RLResearch$index.coverage" NAME="index Coverage Results" MODIFIED="1561145171032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RLResearch$test_similarity_space.coverage" NAME="test_similarity_space Coverage Results" MODIFIED="1535157330534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests" />
     <SUITE FILE_PATH="coverage/RLResearch$dash_gym.coverage" NAME="dash_gym Coverage Results" MODIFIED="1535075158469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dash/apps" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1786160737">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="4" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="py" value="9" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Python" value="9" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="818" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="818" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tests/test_similarity_space.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#5183#5851#0" />
+                <element signature="e#7312#8410#0" />
+                <element signature="e#8623#9846#0" />
+                <element signature="e#10322#10872#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Poker/BlackJack.py">
+        <entry file="file://$PROJECT_DIR$/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="253" column="13" selection-start-line="253" selection-start-column="13" selection-end-line="253" selection-end-column="13" />
+            <state relative-caret-position="1305">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
-                <element signature="e#92#7472#0" />
-                <element signature="e#7493#9248#0" />
-                <element signature="e#9284#10129#0" />
-                <element signature="e#10165#10630#0" />
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dash/apps/graph_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#24#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dash/apps/bayes_predict.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+              <folding>
+                <element signature="e#24#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dash/apps/graph_callback_example.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,6 +119,10 @@
       <find>datatab</find>
       <find>click-data</find>
       <find>.sume(</find>
+      <find>current_score</find>
+      <find>episode_states</find>
+      <find>datatable-lever-holder</find>
+      <find>dt</find>
     </findStrings>
     <replaceStrings>
       <replace>reward-graph</replace>
@@ -134,16 +148,11 @@
         <option value="$PROJECT_DIR$/Data/setup_tables.py" />
         <option value="$PROJECT_DIR$/tasks/test_tasks.py" />
         <option value="$PROJECT_DIR$/Dash/apps/graph_callback_example.py" />
-        <option value="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" />
-        <option value="$PROJECT_DIR$/tasks/rl_basic_tasks.py" />
         <option value="$PROJECT_DIR$/tasks/gym/__init__.py" />
         <option value="$PROJECT_DIR$/Dash/apps/gym/__init__.py" />
-        <option value="$PROJECT_DIR$/index.py" />
         <option value="$PROJECT_DIR$/tasks/gym/cart_pole_1.py" />
         <option value="$PROJECT_DIR$/tasks/gym/blackjack_0.py" />
         <option value="$PROJECT_DIR$/Dash/apps/gym/blackjack.py" />
-        <option value="$PROJECT_DIR$/Dash/apps/datatable_example.py" />
-        <option value="$PROJECT_DIR$/Dash/apps/graph_test.py" />
         <option value="$PROJECT_DIR$/tasks/poker/__init__.py" />
         <option value="$PROJECT_DIR$/tasks/poker/akq_half_street.py" />
         <option value="$PROJECT_DIR$/Poker/Tree.py" />
@@ -152,10 +161,20 @@
         <option value="$PROJECT_DIR$/notebooks/__init__.py" />
         <option value="$PROJECT_DIR$/notebooks/BlackJack/__init__.py" />
         <option value="$PROJECT_DIR$/Poker/__init__.py" />
-        <option value="$PROJECT_DIR$/Poker/BlackJack.py" />
         <option value="$PROJECT_DIR$/Dash/apps/dash_gym.py" />
         <option value="$PROJECT_DIR$/Tests/__init__.py" />
+        <option value="$PROJECT_DIR$/Gambling/BlackJack/Simple/__init__.py" />
+        <option value="$PROJECT_DIR$/Gambling/BlackJack/Simple/dealer.py" />
+        <option value="$PROJECT_DIR$/Poker/BlackJack.py" />
         <option value="$PROJECT_DIR$/Tests/test_similarity_space.py" />
+        <option value="$PROJECT_DIR$/Gambling/BlackJack/Simple/player.py" />
+        <option value="$PROJECT_DIR$/Gambling/BlackJack/Simple/run.py" />
+        <option value="$PROJECT_DIR$/Dash/apps/k_arm_bandit.py" />
+        <option value="$PROJECT_DIR$/tasks/rl_basic_tasks.py" />
+        <option value="$PROJECT_DIR$/Dash/apps/file_upload.py" />
+        <option value="$PROJECT_DIR$/Dash/apps/datatable_example.py" />
+        <option value="$PROJECT_DIR$/index.py" />
+        <option value="$PROJECT_DIR$/Dash/apps/graph_test.py" />
       </list>
     </option>
   </component>
@@ -165,10 +184,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
-    <option name="height" value="873" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -182,6 +200,22 @@
             <path>
               <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
               <item name="RLResearch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RLResearch" type="462c0819:PsiDirectoryNode" />
+              <item name="Dash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RLResearch" type="462c0819:PsiDirectoryNode" />
+              <item name="Dash" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RLResearch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RLResearch" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -213,7 +247,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_similarity_space">
+  <component name="RunManager" selected="Python.index">
     <configuration name="BlackJack" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RLResearch" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -228,28 +262,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Poker/BlackJack.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="blackjack_simple" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RLResearch" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Dash/apps/gym" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Dash/apps/gym/blackjack_simple.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -280,7 +292,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="index" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RLResearch" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -288,12 +300,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tasks/gym" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tasks/gym/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RLResearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Gambling/BlackJack/Simple" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Gambling/BlackJack/Simple/run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -325,19 +359,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.BlackJack" />
-      <item itemvalue="Python.blackjack_simple" />
       <item itemvalue="Python.dash_gym" />
       <item itemvalue="Python.test_similarity_space" />
+      <item itemvalue="Python.run" />
+      <item itemvalue="Python.index" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.index" />
+        <item itemvalue="Python.run" />
         <item itemvalue="Python.test_similarity_space" />
         <item itemvalue="Python.dash_gym" />
         <item itemvalue="Python.BlackJack" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.blackjack_simple" />
       </list>
     </recent_temporary>
   </component>
@@ -394,28 +428,36 @@
       <option name="project" value="LOCAL" />
       <updated>1534033915434</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="DS - Started playing around with similarity state space idea for faster RL applications">
+      <created>1535075964509</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1535075964509</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20028612" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22762509" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900944" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25301206" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3746988" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3698795" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28313252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3927711" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="LuaCheck" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -426,9 +468,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DS - Working on getting task que working with celery and redis" />
     <MESSAGE value="DS - Got simple celery example working with plotting a graph" />
@@ -436,7 +475,8 @@
     <MESSAGE value="DS - Got file datatable working and am able to graph multiple plots from the table" />
     <MESSAGE value="DS - Working on blackjack. Commiting before work tommorow" />
     <MESSAGE value="DS - Almost done with simple blackjack example for policy iteration&#10;example" />
-    <option name="LAST_COMMIT_MESSAGE" value="DS - Almost done with simple blackjack example for policy iteration&#10;example" />
+    <MESSAGE value="DS - Started playing around with similarity state space idea for faster RL applications" />
+    <option name="LAST_COMMIT_MESSAGE" value="DS - Started playing around with similarity state space idea for faster RL applications" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -472,14 +512,9 @@
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tests/test_similarity_space.py</url>
-          <line>114</line>
+          <url>file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py</url>
+          <line>373</line>
           <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tests/test_similarity_space.py</url>
-          <line>52</line>
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -493,6 +528,31 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self.model.predict(np.reshape(similar_state,(1,3)))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>similar_states[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>similar_states</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>minibatch[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>minibatch</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>list(state_1)[0]</expression-string>
         <language-id>Python</language-id>
@@ -510,31 +570,6 @@
       </expression>
       <expression>
         <expression-string>self.policy_value</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.policy_value[1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>all_envs</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.policy</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>hands_df.to_dict()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>hands_df.to_dict</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -626,44 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/graph_callback_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/bayes_predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="171" column="15" lean-forward="true" selection-end-line="171" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" lean-forward="true" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/rl_basic_tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dash/apps/gym/blackjack.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -675,13 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/datatable_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1299">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -712,79 +702,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/graph_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3504">
-          <caret line="234" selection-start-line="234" selection-end-line="241" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/dash_html_components/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Dash/apps/dash_gym.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding>
-            <marker date="1534696916000" expanded="true" signature="1463:1490" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="183" column="14" lean-forward="true" selection-start-line="183" selection-start-column="14" selection-end-line="183" selection-end-column="14" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-            <element signature="e#5183#5851#0" />
-            <element signature="e#7312#8410#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Poker/BlackJack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="253" column="13" selection-start-line="253" selection-start-column="13" selection-end-line="253" selection-end-column="13" />
-          <folding>
-            <element signature="e#92#7472#0" />
-            <element signature="e#7493#9248#0" />
-            <element signature="e#9284#10129#0" />
-            <element signature="e#10165#10630#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dash/apps/gym/blackjack_simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gambling/BlackJack/Simple/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Poker/BlackJack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notebooks/Elements of stats learning.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notebooks/WidgetPlay.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/notebooks/WidgetPlay2.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gambling/BlackJack/Simple/dealer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gambling/BlackJack/Simple/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="274" column="92" selection-start-line="274" selection-start-column="92" selection-end-line="274" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gambling/BlackJack/Simple/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/test_similarity_space.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/rl_basic_tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/datatable_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/file_upload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="88" selection-end-line="88" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/k_arm_bandit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#5183#5851#0" />
+            <element signature="e#7312#8410#0" />
+            <element signature="e#8623#9846#0" />
+            <element signature="e#10322#10872#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/graph_callback_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dash/apps/graph_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/test_similarity_space.py">
+    <entry file="file://$PROJECT_DIR$/Dash/apps/bayes_predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
+        <state relative-caret-position="375">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#24#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

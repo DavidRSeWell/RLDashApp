@@ -4,7 +4,7 @@ import dash_table_experiments as dt
 
 from dash.dependencies import Input, Output,State
 from app import app
-from Dash.apps import bayes_predict, ES_1,datatable_example,graph_test,k_arm_bandit,dash_gym
+from Dash.apps import bayes_predict, ES_1,graph_test,k_arm_bandit,dash_gym,datatable_example
 from Dash.apps.gym import blackjack
 '''
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -79,6 +79,7 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
+
 
     if pathname == '/ES_1':
 

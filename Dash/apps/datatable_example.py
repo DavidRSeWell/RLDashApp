@@ -7,7 +7,7 @@ import json
 import pandas as pd
 import numpy as np
 import plotly
-import mysql.connector
+#import mysql.connector
 
 from app import app
 
@@ -23,6 +23,7 @@ df = pd.read_sql(query, con=cnx)
 cnx.close()
 
 '''
+
 DF_WALMART = pd.read_csv(
     'https://raw.githubusercontent.com/plotly/datasets/master/1962_2006_walmart_store_openings.csv')
 
